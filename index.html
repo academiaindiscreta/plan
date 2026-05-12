@@ -17,7 +17,7 @@ a{color:#4F46E5}
 .btn{display:inline-block;padding:10px 24px;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;border:1px solid #D1D5DB;background:transparent;color:#111827;transition:background 0.15s;font-family:inherit}
 .btn:hover{background:#F9FAFB}
 .btn-primary{background:#4F46E5;color:#fff;border-color:#4F46E5}
-.btn-primary:hover{background:#4338CA;border-color:#4338CA}
+.btn-primary:hover{background:#4338CA}
 .btn-primary:disabled{opacity:0.4;cursor:not-allowed}
 .progress-bar{height:4px;background:#F3F4F6;border-radius:2px;margin-bottom:2rem}
 .progress-fill{height:4px;background:#4F46E5;border-radius:2px}
@@ -51,11 +51,12 @@ a{color:#4F46E5}
 .tag-key{background:#EEF2FF;color:#4F46E5}
 .tag-review{background:#F0FDF4;color:#059669}
 .cal-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:1rem 0}
-.cal-block{border-radius:8px;padding:12px 10px;text-align:center;border:1px solid #E5E7EB}
-.cal-block .cmonth{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px}
-.cal-block .cdates{font-size:11px;color:#6B7280;margin-bottom:5px}
-.cal-block .cfocus{font-size:11px;font-weight:500;line-height:1.3}
-.cal-block.cert{border-color:#D97706;background:#FFFBEB}
+.cal-block{border-radius:10px;padding:14px 10px;text-align:center;border:1px solid #E5E7EB;background:#F9FAFB}
+.cal-block .cnum{font-size:11px;font-weight:500;color:#9CA3AF;margin-bottom:4px}
+.cal-block .cmonth{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px}
+.cal-block .cdates{font-size:11px;color:#6B7280;margin-bottom:6px}
+.cal-block .cfocus{font-size:11px;font-weight:500;line-height:1.3;color:#374151}
+.cal-block.grad{background:#ECFDF5;border-color:#059669}
 .hito-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #F3F4F6}
 .hito-row:last-child{border-bottom:none}
 .hito-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px}
@@ -77,8 +78,8 @@ a{color:#4F46E5}
 .wrap-wide{max-width:620px;margin:0 auto;padding:0 1rem}
 @media(max-width:500px){
   .obj-grid{grid-template-columns:1fr 1fr}
-  .cal-grid{grid-template-columns:1fr 1fr;gap:6px}
-  .cal-grid .cal-block:last-child{grid-column:1/-1}
+  .cal-grid{gap:5px}
+  .cal-block .cdates{display:none}
 }
 </style>
 </head>
@@ -158,13 +159,13 @@ a{color:#4F46E5}
     <div id="rec-section"></div>
 
     <h2 style="margin-top:1.5rem">Tu calendario</h2>
-    <p style="font-size:13px;margin-bottom:10px">Clases lunes y miércoles · Conversacional viernes · 13 abril – 28 agosto</p>
+    <p style="font-size:13px;margin-bottom:4px">Clases lunes y miércoles · Conversacional viernes · 12 mayo – 25 septiembre</p>
     <div class="cal-grid">
-      <div class="cal-block"><div class="cmonth" style="color:#4F46E5">Mes 1</div><div class="cdates">13 abr – 13 may</div><div class="cfocus" style="color:#111827">Bases del idioma</div></div>
-      <div class="cal-block"><div class="cmonth" style="color:#4F46E5">Mes 2</div><div class="cdates">14 may – 11 jun</div><div class="cfocus" style="color:#111827">Pasado y comparación</div></div>
-      <div class="cal-block cert"><div class="cmonth">Mes 3</div><div class="cdates">12 jun – 9 jul</div><div class="cfocus" style="color:#D97706">Fluidez · Certificado intermedio</div></div>
-      <div class="cal-block"><div class="cmonth" style="color:#4F46E5">Mes 4</div><div class="cdates">10 jul – 6 ago</div><div class="cfocus" style="color:#111827">Estructuras avanzadas</div></div>
-      <div class="cal-block"><div class="cmonth" style="color:#059669">Mes 5</div><div class="cdates">7 ago – 28 ago</div><div class="cfocus" style="color:#059669">Consolidación · Graduación</div></div>
+      <div class="cal-block"><div class="cnum">Mes 1</div><div class="cmonth" style="color:#4F46E5">Mayo</div><div class="cdates">12 may – 9 jun</div><div class="cfocus">Bases del idioma</div></div>
+      <div class="cal-block"><div class="cnum">Mes 2</div><div class="cmonth" style="color:#4F46E5">Junio</div><div class="cdates">10 jun – 8 jul</div><div class="cfocus">Pasado y comparación</div></div>
+      <div class="cal-block"><div class="cnum">Mes 3</div><div class="cmonth" style="color:#4F46E5">Julio</div><div class="cdates">9 jul – 5 ago</div><div class="cfocus">Fluidez · Cert. intermedio 🏅</div></div>
+      <div class="cal-block"><div class="cnum">Mes 4</div><div class="cmonth" style="color:#4F46E5">Agosto</div><div class="cdates">6 ago – 2 sep</div><div class="cfocus">Estructuras avanzadas</div></div>
+      <div class="cal-block grad"><div class="cnum">Mes 5</div><div class="cmonth" style="color:#059669">Sep 🎓</div><div class="cdates">3 sep – 25 sep</div><div class="cfocus" style="color:#059669;font-weight:600">Consolidación · Graduación</div></div>
     </div>
 
     <h2 style="margin-top:1.5rem">Programa completo</h2>
@@ -173,11 +174,11 @@ a{color:#4F46E5}
 
     <h2 style="margin-top:1.5rem">Hitos del programa</h2>
     <div class="card" style="margin-bottom:1.5rem">
-      <div class="hito-row"><div class="hito-dot" style="background:#4F46E5"></div><div><div class="hito-text">Sesión 1:1 de diagnóstico con Eve</div><div class="hito-week">Semana 1 · Abril</div></div></div>
+      <div class="hito-row"><div class="hito-dot" style="background:#4F46E5"></div><div><div class="hito-text">Sesión 1:1 de diagnóstico con Eve</div><div class="hito-week">Semana 1 · Mayo</div></div></div>
       <div class="hito-row"><div class="hito-dot" style="background:#4F46E5"></div><div><div class="hito-text">Curso de pronunciación — Misión Pronunciación · <a href="https://drive.google.com/drive/folders/18ipn92q4uZLalgt83IlufRE8QH5nEd8o?usp=drive_link">Acceder</a></div><div class="hito-week">Semanas 1–2</div></div></div>
-      <div class="hito-row"><div class="hito-dot" style="background:#D97706"></div><div><div class="hito-text">Speaker in Progress — Certificado intermedio</div><div class="hito-week">Semana 10 · Julio</div></div></div>
-      <div class="hito-row"><div class="hito-dot" style="background:#4F46E5"></div><div><div class="hito-text">Presentación final en inglés con todo tu recorrido</div><div class="hito-week">Semana 20 · 25 ago</div></div></div>
-      <div class="hito-row"><div class="hito-dot" style="background:#059669"></div><div><div class="hito-text">Certificado final + Reporte Académico personalizado</div><div class="hito-week">28 agosto · Conversacional de Graduación</div></div></div>
+      <div class="hito-row"><div class="hito-dot" style="background:#D97706"></div><div><div class="hito-text">Speaker in Progress — Certificado intermedio</div><div class="hito-week">Semana 10 · 18 de julio</div></div></div>
+      <div class="hito-row"><div class="hito-dot" style="background:#4F46E5"></div><div><div class="hito-text">Presentación final en inglés con todo tu recorrido</div><div class="hito-week">Semana 20 · 23 de septiembre</div></div></div>
+      <div class="hito-row"><div class="hito-dot" style="background:#059669"></div><div><div class="hito-text">Certificado final + Reporte Académico personalizado</div><div class="hito-week">25 de septiembre · Conversacional de Graduación</div></div></div>
     </div>
 
     <h2>Recursos que vas a usar</h2>
@@ -203,31 +204,31 @@ a{color:#4F46E5}
 
 <script>
 const MONTHS=[
-  {label:"Mes 1",dates:"13 abr – 13 may",focus:"Bases del idioma",classes:[
+  {label:"Mes 1",dates:"12 may – 9 jun",focus:"Bases del idioma",classes:[
     {n:1,t:"Spelling"},{n:2,t:"Adjetivos de personalidad"},{n:3,t:"Bases del inglés"},
     {n:4,t:"Modal verbs",tag:"key"},{n:5,t:"Some / Any / No"},{n:6,t:"Vestimenta · Presente Continuo"},
     {n:7,t:"Do / Does / To Be"},{n:8,t:"Review: Some, Any, No",tag:"review"}
   ],conv:["Presentaciones personales","Descripciones de personas y lugares"]},
-  {label:"Mes 2",dates:"14 may – 11 jun",focus:"Pasado y comparación",classes:[
+  {label:"Mes 2",dates:"10 jun – 8 jul",focus:"Pasado y comparación",classes:[
     {n:9,t:"Was / Were / Did"},{n:10,t:"Verbos regulares e irregulares"},
     {n:11,t:'The article "The"'},{n:12,t:"Reclamos · Be able to"},
     {n:13,t:"Can / Could / Be able to / Must / Have to"},{n:14,t:"Comparativos y superlativos"},
     {n:15,t:"Many / Much / Little / Few"},{n:16,t:"Review: Pasado · Be able to",tag:"review"},
     {n:17,t:"Review: Comparativos · Superlativos · Much/Many",tag:"review"}
   ],conv:["Contar lo que hiciste","Anécdotas del pasado"]},
-  {label:"Mes 3",dates:"12 jun – 9 jul",focus:"Fluidez · Certificado intermedio",cert:true,classes:[
+  {label:"Mes 3",dates:"9 jul – 5 ago",focus:"Fluidez · Certificado intermedio",cert:true,classes:[
     {n:18,t:"Usos del GET"},{n:19,t:"Gerundio vs. Infinitivo"},
     {n:20,t:"Vocabulario: Comida"},{n:21,t:"Vocabulario: Crímenes"},
     {n:22,t:"Will vs. Be Going to"},{n:23,t:"Condicionales 0, 1 y 2"},
     {n:24,t:"Visiting the doctor · Modals"}
   ],conv:["Debates cortos","Storytelling"]},
-  {label:"Mes 4",dates:"10 jul – 6 ago",focus:"Estructuras avanzadas",classes:[
+  {label:"Mes 4",dates:"6 ago – 2 sep",focus:"Estructuras avanzadas",classes:[
     {n:25,t:"Linkers · Entrevista laboral",tag:"key"},{n:26,t:"Presente Perfecto"},
     {n:27,t:"Pasado Perfecto · 3rd Conditional"},{n:28,t:"Review: Tiempos verbales",tag:"review"},
     {n:29,t:"Review: Condicionales",tag:"review"},{n:30,t:"Passive Voice · Tag questions"},
     {n:31,t:"Reported Speech · Indirect questions"},{n:32,t:"Phrasal Verbs: Separables/Inseparables"}
   ],conv:["Planes futuros","Escenarios hipotéticos"]},
-  {label:"Mes 5",dates:"7 ago – 28 ago",focus:"Consolidación y graduación",classes:[
+  {label:"Mes 5",dates:"3 sep – 25 sep",focus:"Consolidación y graduación",classes:[
     {n:33,t:"Phrasal Verbs: Out"},{n:34,t:"Phrasal Verbs: In / Out / Over"},
     {n:35,t:"Phrasals: On / Off"},{n:36,t:"Phrasals: For / Away / Along / About"},
     {n:37,t:"Should've / Must've / Would've / Needn't have"},
@@ -247,6 +248,8 @@ const RECS={
 
 const LEVEL_LABELS=["","Nivel 1–2: Palabras sueltas","Nivel 3–4: Tengo base pero no sale","Nivel 5–6: Me defiendo con dificultad","Nivel 7–8: Hablo pero me trabo","Nivel 9–10: Hablo fluido, quiero sonar natural"];
 const OBJ_LABELS={trabajo:"conseguir trabajo / ascenso",entrevista:"pasar una entrevista",reuniones:"reuniones en inglés",viaje:"próximo viaje",superacion:"superación personal",confianza:"hablar con confianza"};
+const GUIA_OBJS=['trabajo','entrevista','reuniones'];
+const EPIC_OBJS=['viaje','superacion','confianza'];
 
 let state={name:"",level:0,objectives:[],planId:null};
 
@@ -306,16 +309,16 @@ function renderPlan(){
   });
 
   const bs=document.getElementById('bonus-section');
-  const hasEntrevista=state.objectives.includes('entrevista');
-  const hasOtro=state.objectives.some(o=>o!=='entrevista');
+  const showGuia=state.objectives.some(o=>GUIA_OBJS.includes(o));
+  const showEpic=state.objectives.some(o=>EPIC_OBJS.includes(o));
   let html='';
-  if(hasEntrevista||hasOtro){
+  if(showGuia||showEpic){
     html='<h2 style="margin-bottom:10px">Recursos extra para tu objetivo</h2>';
-    if(hasEntrevista){
-      html+=`<div class="bonus-card"><div style="font-size:18px;flex-shrink:0">📋</div><div><div class="bonus-title">Guía: Cómo pasar una entrevista laboral en inglés</div><div class="bonus-desc">Recurso exclusivo de Academia Indiscreta con todo lo que necesitás saber para destacarte en tu próxima entrevista.</div><a href="https://drive.google.com/file/d/1dTzsOn6Cz5drD5xfR6hOkh8emPus3eJz/view?usp=sharing" style="font-size:13px;display:inline-block;margin-top:6px">Descargar guía →</a></div></div>`;
+    if(showGuia){
+      html+=`<div class="bonus-card"><div style="font-size:18px;flex-shrink:0">📋</div><div><div class="bonus-title">Guía: Cómo pasar una entrevista laboral en inglés</div><div class="bonus-desc">Recurso exclusivo de Academia Indiscreta con todo lo que necesitás saber para destacarte en tu próxima entrevista.</div><a href="https://drive.google.com/file/d/1dTzsOn6Cz5drD5xfR6hOkh8emPus3eJz/view?usp=sharing" style="font-size:13px;color:#4F46E5;display:inline-block;margin-top:6px">Descargar guía →</a></div></div>`;
     }
-    if(hasOtro){
-      html+=`<div class="bonus-card"><div style="font-size:18px;flex-shrink:0">📚</div><div><div class="bonus-title">EPIC! — 100 Everyday Phrases In Context</div><div class="bonus-desc">El ebook con +100 frases del día a día EN CONTEXTO para que vayas practicando vocabulario natural entre clases.</div><a href="https://drive.google.com/file/d/1gDvqRx4HAW90AHIT451SIy2EwOwymRgf/view?usp=sharing" style="font-size:13px;display:inline-block;margin-top:6px">Descargar ebook →</a></div></div>`;
+    if(showEpic){
+      html+=`<div class="bonus-card"><div style="font-size:18px;flex-shrink:0">📚</div><div><div class="bonus-title">EPIC! — 100 Everyday Phrases In Context</div><div class="bonus-desc">El ebook con +100 frases del día a día EN CONTEXTO para que vayas practicando vocabulario natural entre clases.</div><a href="https://drive.google.com/file/d/1gDvqRx4HAW90AHIT451SIy2EwOwymRgf/view?usp=sharing" style="font-size:13px;color:#4F46E5;display:inline-block;margin-top:6px">Descargar ebook →</a></div></div>`;
     }
     html+='<div style="margin-bottom:1.5rem"></div>';
   }

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de Acción — El Juego del Inglés</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#111827;background:#fff;padding:0 0 3rem}
+.screen{display:none}.screen.active{display:block}
+h1{font-size:22px;font-weight:600}
+h2{font-size:18px;font-weight:600;margin-bottom:12px}
+h3{font-size:16px;font-weight:600;margin-bottom:6px}
+p{font-size:15px;line-height:1.7;color:#6B7280}
+a{color:#4F46E5}
+.card{background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:1.25rem}
+.btn{display:inline-block;padding:10px 24px;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;border:1px solid #D1D5DB;background:transparent;color:#111827;transition:background 0.15s;font-family:inherit}
+.btn:hover{background:#F9FAFB}
+.btn-primary{background:#4F46E5;color:#fff;border-color:#4F46E5}
+.btn-primary:hover{background:#4338CA}
+.btn-primary:disabled{opacity:0.4;cursor:not-allowed}
+.progress-bar{height:4px;background:#F3F4F6;border-radius:2px;margin-bottom:2rem}
+.progress-fill{height:4px;background:#4F46E5;border-radius:2px}
+.level-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.level-card{border:1px solid #E5E7EB;border-radius:8px;padding:12px;cursor:pointer;transition:all 0.15s;background:#fff}
+.level-card:hover,.level-card.selected{border-color:#4F46E5;background:#EEF2FF}
+.level-card.selected{border-width:2px}
+.level-card .num{font-size:12px;font-weight:600;color:#4F46E5;margin-bottom:3px}
+.level-card .title{font-size:13px;font-weight:600;margin-bottom:2px;color:#111827}
+.level-card .desc{font-size:12px;color:#6B7280;line-height:1.4}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.obj-card{border:1px solid #E5E7EB;border-radius:8px;padding:14px 10px;cursor:pointer;transition:all 0.15s;background:#fff;text-align:center}
+.obj-card:hover,.obj-card.selected{border-color:#4F46E5;background:#EEF2FF}
+.obj-card.selected{border-width:2px}
+.obj-card .icon{font-size:20px;margin-bottom:5px}
+.obj-card .label{font-size:12px;font-weight:500;color:#111827;line-height:1.3}
+.name-input{width:100%;padding:10px 14px;border:1px solid #D1D5DB;border-radius:8px;font-size:15px;color:#111827;outline:none;font-family:inherit}
+.name-input:focus{border-color:#4F46E5;box-shadow:0 0 0 3px rgba(79,70,229,0.1)}
+.step-num{width:28px;height:28px;border-radius:50%;background:#4F46E5;color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:2rem}
+.section-label{font-size:12px;font-weight:600;color:#6B7280;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;margin-top:1.5rem}
+.month-block{border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;margin-bottom:10px}
+.month-header{padding:12px 16px;background:#F9FAFB;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.month-body{padding:12px 16px;display:none}
+.month-body.open{display:block}
+.class-row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid #F3F4F6}
+.class-row:last-child{border-bottom:none}
+.class-num{font-size:12px;color:#9CA3AF;min-width:54px;padding-top:2px;flex-shrink:0}
+.class-topic{font-size:13px;color:#111827}
+.ctag{font-size:11px;padding:1px 7px;border-radius:10px;margin-left:5px;font-weight:500;vertical-align:middle;display:inline-block}
+.tag-review{background:#F0FDF4;color:#059669}
+.cal-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:1rem 0}
+.cal-block{border-radius:10px;padding:14px 10px;text-align:center;border:1px solid #E5E7EB;background:#F9FAFB}
+.cal-block .cnum{font-size:11px;font-weight:500;color:#9CA3AF;margin-bottom:4px}
+.cal-block .cmonth{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px}
+.cal-block .cdates{font-size:11px;color:#6B7280;margin-bottom:6px}
+.cal-block .cfocus{font-size:11px;font-weight:500;line-height:1.3;color:#374151}
+.cal-block.grad{background:#ECFDF5;border-color:#059669}
+.hito-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #F3F4F6}
+.hito-row:last-child{border-bottom:none}
+.hito-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.hito-text{font-size:14px;color:#111827}
+.hito-week{font-size:12px;color:#6B7280;margin-top:1px}
+.rec-box{background:#EEF2FF;border-left:3px solid #4F46E5;border-radius:0 8px 8px 0;padding:14px 16px;margin:0 0 10px}
+.rec-box .rec-title{font-size:13px;font-weight:600;color:#4F46E5;margin-bottom:6px}
+.rec-box p{color:#111827;font-size:14px;line-height:1.6}
+.resource-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid #F3F4F6}
+.resource-row:last-child{border-bottom:none}
+.bonus-card{border:1px solid #E5E7EB;border-radius:8px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px}
+.bonus-title{font-size:14px;font-weight:600;color:#111827;margin-bottom:3px}
+.bonus-desc{font-size:13px;color:#6B7280;line-height:1.4}
+.link-box{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px}
+.link-url{font-size:13px;color:#4F46E5;flex:1;word-break:break-all}
+.copy-btn{font-size:13px;padding:5px 12px;border-radius:8px;border:1px solid #D1D5DB;background:#fff;cursor:pointer;color:#111827;white-space:nowrap;font-family:inherit}
+.copy-btn:hover{background:#F3F4F6}
+.wrap{max-width:560px;margin:0 auto;padding:0 1rem}
+.wrap-wide{max-width:620px;margin:0 auto;padding:0 1rem}
+@media(max-width:500px){
+  .obj-grid{grid-template-columns:1fr 1fr}
+  .cal-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .cal-grid .cal-block:last-child{grid-column:1/-1}
+  .cal-block .cdates{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="screen-intro" class="screen active" style="padding-top:2rem">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:2rem">
+      <div style="font-size:12px;font-weight:600;color:#4F46E5;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Academia Indiscreta</div>
+      <h1 style="margin-bottom:6px">El Juego del Inglés</h1>
+      <p>Tu plan de acción personalizado — 20 semanas para hablar inglés con confianza</p>
+    </div>
+    <div class="card" style="margin-bottom:12px">
+      <div class="section-label">Tu nombre</div>
+      <input class="name-input" id="input-name" type="text" placeholder="Escribí tu nombre aquí..." oninput="checkName()">
+    </div>
+    <button class="btn btn-primary" id="btn-start" style="width:100%" disabled onclick="goTo('screen-1')">Empezar mi plan</button>
+  </div>
+</div>
+
+<div id="screen-1" class="screen" style="padding-top:1.5rem">
+  <div class="wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:33%"></div></div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.5rem">
+      <div class="step-num">1</div>
+      <div><h2 style="margin:0">¿En qué nivel estás hoy?</h2><p style="font-size:13px;margin-top:2px">Elige el que más se acerca a tu situación actual</p></div>
+    </div>
+    <div class="level-grid">
+      <div class="level-card" onclick="selectLevel(1)"><div class="num">Nivel 1–2</div><div class="title">Palabras sueltas</div><div class="desc">Conozco saludos básicos pero no puedo armar oraciones</div></div>
+      <div class="level-card" onclick="selectLevel(2)"><div class="num">Nivel 3–4</div><div class="title">Tengo base pero no sale</div><div class="desc">He estudiado inglés pero en la vida real no puedo hablar</div></div>
+      <div class="level-card" onclick="selectLevel(3)"><div class="num">Nivel 5–6</div><div class="title">Me defiendo con dificultad</div><div class="desc">Puedo decir cosas básicas pero me siento inseguro/a</div></div>
+      <div class="level-card" onclick="selectLevel(4)"><div class="num">Nivel 7–8</div><div class="title">Hablo pero me trabo</div><div class="desc">Me comunico bien pero necesito pensar mucho y me faltan frases</div></div>
+      <div class="level-card" onclick="selectLevel(5)" style="grid-column:1/-1"><div class="num">Nivel 9–10</div><div class="title">Hablo fluido, quiero sonar más natural</div><div class="desc">Ya me comunico bien — quiero mejorar pronunciación y vocabulario avanzado</div></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn" onclick="goTo('screen-intro')">Atrás</button>
+      <button class="btn btn-primary" id="btn-next1" disabled onclick="goTo('screen-2')">Siguiente</button>
+    </div>
+  </div>
+</div>
+
+<div id="screen-2" class="screen" style="padding-top:1.5rem">
+  <div class="wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:66%"></div></div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.5rem">
+      <div class="step-num">2</div>
+      <div><h2 style="margin:0">¿Para qué quieres aprender inglés?</h2><p style="font-size:13px;margin-top:2px">Puedes elegir más de uno</p></div>
+    </div>
+    <div class="obj-grid">
+      <div class="obj-card" onclick="toggleObj('trabajo')"><div class="icon">💼</div><div class="label">Conseguir trabajo o ascenso</div></div>
+      <div class="obj-card" onclick="toggleObj('entrevista')"><div class="icon">🎯</div><div class="label">Pasar una entrevista</div></div>
+      <div class="obj-card" onclick="toggleObj('reuniones')"><div class="icon">🤝</div><div class="label">Reuniones en inglés</div></div>
+      <div class="obj-card" onclick="toggleObj('viaje')"><div class="icon">✈️</div><div class="label">Próximo viaje</div></div>
+      <div class="obj-card" onclick="toggleObj('superacion')"><div class="icon">⭐</div><div class="label">Superación personal</div></div>
+      <div class="obj-card" onclick="toggleObj('confianza')"><div class="icon">🔊</div><div class="label">Hablar con confianza</div></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn" onclick="goTo('screen-1')">Atrás</button>
+      <button class="btn btn-primary" id="btn-next2" disabled onclick="generatePlan()">Ver mi plan</button>
+    </div>
+  </div>
+</div>
+
+<div id="screen-plan" class="screen" style="padding-top:1rem">
+  <div class="wrap-wide">
+    <div style="padding:1.25rem 0 1rem;border-bottom:1px solid #E5E7EB;margin-bottom:1.5rem">
+      <div style="font-size:12px;font-weight:600;color:#4F46E5;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Academia Indiscreta · El Juego del Inglés</div>
+      <div id="plan-name" style="font-size:22px;font-weight:600;margin-bottom:4px"></div>
+      <div id="plan-meta" style="font-size:13px;color:#6B7280"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem">
+      <div style="background:#F9FAFB;border-radius:8px;padding:14px;text-align:center"><div style="font-size:20px;font-weight:600">20</div><div style="font-size:12px;color:#6B7280">semanas</div></div>
+      <div style="background:#F9FAFB;border-radius:8px;padding:14px;text-align:center"><div style="font-size:20px;font-weight:600">40</div><div style="font-size:12px;color:#6B7280">clases en vivo</div></div>
+      <div style="background:#F9FAFB;border-radius:8px;padding:14px;text-align:center"><div style="font-size:20px;font-weight:600">20</div><div style="font-size:12px;color:#6B7280">conversacionales</div></div>
+    </div>
+
+    <div id="rec-section"></div>
+
+    <h2 style="margin-top:1.5rem">Tu calendario</h2>
+    <p style="font-size:13px;margin-bottom:10px">Clases martes y jueves · Conversacional viernes · 14 julio – 27 noviembre</p>
+    <div class="cal-grid">
+      <div class="cal-block"><div class="cnum">Mes 1</div><div class="cmonth" style="color:#4F46E5">Julio</div><div class="cdates">14 jul – 11 ago</div><div class="cfocus">Bases del idioma</div></div>
+      <div class="cal-block"><div class="cnum">Mes 2</div><div class="cmonth" style="color:#4F46E5">Agosto</div><div class="cdates">12 ago – 8 sep</div><div class="cfocus">Pasado y comparación</div></div>
+      <div class="cal-block"><div class="cnum">Mes 3</div><div class="cmonth" style="color:#4F46E5">Septiembre</div><div class="cdates">9 sep – 6 oct</div><div class="cfocus">Fluidez · Cert. intermedio 🏅</div></div>
+      <div class="cal-block"><div class="cnum">Mes 4</div><div class="cmonth" style="color:#4F46E5">Octubre</div><div class="cdates">7 oct – 3 nov</div><div class="cfocus">Estructuras avanzadas</div></div>
+      <div class="cal-block grad"><div class="cnum">Mes 5</div><div class="cmonth" style="color:#059669">Nov 🎓</div><div class="cdates">4 nov – 27 nov</div><div class="cfocus" style="color:#059669;font-weight:600">Consolidación · Graduación</div></div>
+    </div>
+
+    <h2 style="margin-top:1.5rem">Programa completo</h2>
+    <p style="font-size:13px;margin-bottom:10px">Toca cada mes para ver los temas</p>
+    <div id="months-container"></div>
+
+    <h2 style="margin-top:1.5rem">Hitos del programa</h2>
+    <div class="card" style="margin-bottom:1.5rem">
+      <div class="hito-row"><div class="hito-dot" style="background:#4F46E5"></div><div><div class="hito-text">Sesión 1:1 de diagnóstico con Eve</div><div class="hito-week">Semana 1 · Julio</div></div></div>
+      <div class="hito-row"><div class="hito-dot" style="background:#4F46E5"></div><div><div class="hito-text">Curso de pronunciación — Misión Pronunciación · <a href="https://drive.google.com/drive/folders/18ipn92q4uZLalgt83IlufRE8QH5nEd8o?usp=drive_link">Acceder</a></div><div class="hito-week">Semanas 1–2</div></div></div>
+      <div class="hito-row"><div class="hito-dot" style="background:#D97706"></div><div><div class="hito-text">Speaker in Progress — Certificado intermedio</div><div class="hito-week">Semana 10 · 18 de septiembre</div></div></div>
+      <div class="hito-row"><div class="hito-dot" style="background:#4F46E5"></div><div><div class="hito-text">Práctica Final — Presentación completa en inglés</div><div class="hito-week">Semana 20 · 26 y 28 de noviembre</div></div></div>
+      <div class="hito-row"><div class="hito-dot" style="background:#059669"></div><div><div class="hito-text">Certificado final + Reporte Académico personalizado</div><div class="hito-week">27 de noviembre · Conversacional de Graduación</div></div></div>
+    </div>
+
+    <h2>Recursos que vas a usar</h2>
+    <div class="card" style="margin-bottom:1.5rem">
+      <div class="resource-row"><div style="font-size:16px;flex-shrink:0;margin-top:2px">📖</div><div><div style="font-size:14px;font-weight:600;margin-bottom:2px"><a href="https://www.wordreference.com/es/">WordReference</a></div><div style="font-size:13px;color:#6B7280;line-height:1.4">Consulta el significado exacto de las palabras y sus ejemplos en contextos reales.</div></div></div>
+      <div class="resource-row"><div style="font-size:16px;flex-shrink:0;margin-top:2px">✏️</div><div><div style="font-size:14px;font-weight:600;margin-bottom:2px"><a href="https://www.liveworksheets.com/es">Liveworksheets</a></div><div style="font-size:13px;color:#6B7280;line-height:1.4">Realiza ejercicios interactivos con corrección automática y refuerza tu gramática y audición.</div></div></div>
+      <div class="resource-row"><div style="font-size:16px;flex-shrink:0;margin-top:2px">🎬</div><div><div style="font-size:14px;font-weight:600;margin-bottom:2px"><a href="https://www.playphrase.me/">PlayPhrase.me</a></div><div style="font-size:13px;color:#6B7280;line-height:1.4">Escucha cómo se pronuncian frases reales en fragmentos de películas y mejora tu fluidez.</div></div></div>
+    </div>
+
+    <div id="bonus-section"></div>
+
+    <h2 style="margin-top:1.5rem">Tu link permanente</h2>
+    <p style="font-size:14px;margin-bottom:10px">Guarda este link — es tuyo para volver cuando quieras.</p>
+    <div class="link-box">
+      <span class="link-url" id="plan-link">Generando...</span>
+      <button class="copy-btn" onclick="copyLink()">Copiar</button>
+    </div>
+    <div style="margin-top:2rem;text-align:center">
+      <button class="btn" onclick="goTo('screen-intro')" style="font-size:13px">Crear otro plan</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const MONTHS=[
+  {label:"Mes 1",dates:"14 jul – 11 ago",focus:"Bases del idioma",classes:[
+    {n:1,t:"Spelling · Numbers · Signs & Marks"},{n:2,t:"Adjectives and Personality"},
+    {n:3,t:"Language Basics: Be · Modals · Auxiliaries"},{n:4,t:"Modal Verbs"},
+    {n:5,t:"Some / Any / No"},{n:6,t:"Clothing · Present Continuous"},
+    {n:7,t:"Review: Do / Does / To Be",tag:"review"},{n:8,t:"Review: Some / Any / No",tag:"review"}
+  ]},
+  {label:"Mes 2",dates:"12 ago – 8 sep",focus:"Pasado y comparación",classes:[
+    {n:9,t:"Past Simple: Was / Were / Did"},{n:10,t:"Past Simple: Regular and Irregular Verbs"},
+    {n:11,t:"Articles: A / An / The / Zero Article"},{n:12,t:"Complaints · Be able to"},
+    {n:13,t:"Comparatives · Superlatives"},{n:14,t:"Quantifiers: Much / Many / Few / Little"},
+    {n:15,t:"Review: Past Simple · Can/Could & Be able to",tag:"review"},
+    {n:16,t:"Review: Comparatives · Superlatives · Quantifiers",tag:"review"}
+  ]},
+  {label:"Mes 3",dates:"9 sep – 6 oct",focus:"Fluidez · Certificado intermedio",cert:true,classes:[
+    {n:17,t:"GET — usos y expresiones"},{n:18,t:"Gerund vs. Infinitive"},
+    {n:19,t:"Recipes · Cooking Vocabulary"},{n:20,t:"Crime Vocabulary"},
+    {n:21,t:"Future Simple: Will · Be Going to"},{n:22,t:"Conditionals: Zero · First · Second"},
+    {n:23,t:"Illnesses · Diseases · Symptoms · May / Might"}
+  ]},
+  {label:"Mes 4",dates:"7 oct – 3 nov",focus:"Estructuras avanzadas",classes:[
+    {n:24,t:"Types of Connectors · Job Interviews"},
+    {n:25,t:"Present Perfect: Already · Yet · Still · Just · For · Since"},
+    {n:26,t:"Past Perfect · 3rd Conditional"},
+    {n:27,t:"Review: Verbal Tenses",tag:"review"},{n:28,t:"Review: Conditionals — If / Whether",tag:"review"},
+    {n:29,t:"Passive Voice · Tag Questions"},
+    {n:30,t:"Reported Speech · Indirect Questions"},
+    {n:31,t:"Phrasal Verbs: Up · Down"}
+  ]},
+  {label:"Mes 5",dates:"4 nov – 27 nov",focus:"Consolidación y graduación",classes:[
+    {n:32,t:"Phrasal Verbs: Out · In · Over"},{n:33,t:"Phrasal Verbs: On · Off"},
+    {n:34,t:"Phrasal Verbs: Away · For · About"},
+    {n:35,t:"Neither Nor · Either Or · Both And"},
+    {n:36,t:"Would've · Should've · Must've"},
+    {n:37,t:"Idioms and Common Expressions"},
+    {n:38,t:"Idioms and Chatting Abbreviations"},
+    {n:39,t:"Final Practice (1)"},{n:40,t:"Final Practice (2)"}
+  ]}
+];
+
+const RECS={
+  trabajo:{titulo:"Tu camino al trabajo en inglés",text:"Lee artículos en inglés de tu industria, escucha podcasts de negocios y escribe pequeños resúmenes. Practica describir tu experiencia laboral en voz alta — eso es exactamente lo que te van a pedir. La Clase 24 (Connectors · Job Interviews) es tu clase estrella en el mes 4.",clases:"Clases clave: Clase 4 (Modal verbs), Clase 24 (Connectors · Job Interviews), Clase 25 (Present Perfect)"},
+  entrevista:{titulo:"Cómo preparar tu entrevista",text:"Practica en voz alta todos los días, aunque sea 5 minutos. Grábate respondiendo preguntas comunes y escucha tu propio acento. Usa PlayPhrase.me para imitar cómo hablan profesionales en series corporativas. La Clase 24 es fundamental para ti.",clases:"Clases clave: Clase 13 (Comparatives), Clase 24 (Connectors · Job Interviews), Clase 30 (Reported Speech)"},
+  reuniones:{titulo:"Para dominar tus reuniones",text:"Mira series o noticieros en inglés con subtítulos en inglés, no en español. Practica tomar notas en inglés durante las clases. Los Connectors del mes 4 son esenciales para estructurar tus ideas cuando hablas en reuniones largas.",clases:"Clases clave: Clase 24 (Connectors), Clase 25 (Present Perfect), Clase 29 (Passive Voice · Tag Questions)"},
+  viaje:{titulo:"Inglés listo para tu viaje",text:"Practica situaciones reales en voz alta: pedir comida, preguntar direcciones, moverte por el aeropuerto. Usa WordReference para aprender el vocabulario específico de los lugares que vas a visitar. La Clase 23 (Illnesses) te da herramientas para cualquier emergencia.",clases:"Clases clave: Clase 5 (Some/Any/No), Clase 19 (Cooking Vocabulary), Clase 23 (Illnesses · Diseases)"},
+  superacion:{titulo:"Tu hábito diario de inglés",text:"La consistencia es todo. Dedica 15 minutos al día por fuera de clase: escuchar música en inglés, ver reels, leer posts cortos. Usa Liveworksheets para reforzar los temas de cada clase el mismo día que los ves — eso duplica la retención.",clases:"Clases clave: Todas las de review (Clases 7, 8, 15, 16, 27, 28) · El mes 5 con Idioms es tu gran salto de nivel"},
+  confianza:{titulo:"Para soltar la lengua de una vez",text:"No te saltes ningún conversacional — son tu espacio más seguro para cometer errores sin presión. Habla en voz alta cuando practicas solo, aunque sea hablándole a tu espejo. Usa PlayPhrase.me para imitar la pronunciación de hablantes nativos.",clases:"Clases clave: Clase 18 (Gerund vs. Infinitive), Clase 37 y 38 (Idioms & Expressions)"}
+};
+
+const LEVEL_LABELS=["","Nivel 1–2: Palabras sueltas","Nivel 3–4: Tengo base pero no sale","Nivel 5–6: Me defiendo con dificultad","Nivel 7–8: Hablo pero me trabo","Nivel 9–10: Hablo fluido, quiero sonar natural"];
+const OBJ_LABELS={trabajo:"conseguir trabajo / ascenso",entrevista:"pasar una entrevista",reuniones:"reuniones en inglés",viaje:"próximo viaje",superacion:"superación personal",confianza:"hablar con confianza"};
+const GUIA_OBJS=['trabajo','entrevista','reuniones'];
+const VIAJE_OBJS=['viaje'];
+const EPIC_OBJS=['superacion','confianza'];
+
+let state={name:"",level:0,objectives:[],planId:null};
+
+function checkName(){
+  state.name=document.getElementById('input-name').value.trim();
+  document.getElementById('btn-start').disabled=state.name.length<2;
+}
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function selectLevel(n){
+  state.level=n;
+  document.querySelectorAll('.level-card').forEach((c,i)=>c.classList.toggle('selected',i===n-1));
+  document.getElementById('btn-next1').disabled=false;
+}
+function toggleObj(k){
+  const el=document.querySelector('.obj-card[onclick*="'+k+'"]');
+  const idx=state.objectives.indexOf(k);
+  if(idx>=0){state.objectives.splice(idx,1);el.classList.remove('selected');}
+  else{state.objectives.push(k);el.classList.add('selected');}
+  document.getElementById('btn-next2').disabled=state.objectives.length===0;
+}
+function toggleMonth(h){h.nextElementSibling.classList.toggle('open');}
+
+function generatePlan(){
+  state.planId='plan_'+Date.now();
+  try{localStorage.setItem(state.planId,JSON.stringify(state));}catch(e){}
+  renderPlan();
+  goTo('screen-plan');
+}
+
+function renderPlan(){
+  document.getElementById('plan-name').textContent='Plan de '+state.name;
+  document.getElementById('plan-meta').textContent=LEVEL_LABELS[state.level]+' · '+state.objectives.map(o=>OBJ_LABELS[o]).join(', ');
+
+  const recEl=document.getElementById('rec-section');
+  recEl.innerHTML=state.objectives.map(o=>RECS[o]).filter(Boolean).map(r=>`
+    <div class="rec-box">
+      <div class="rec-title">${r.titulo}</div>
+      <p>${r.text}</p>
+      <p style="margin-top:8px;font-size:13px;color:#4F46E5">${r.clases}</p>
+    </div>`).join('');
+
+  const mc=document.getElementById('months-container');
+  mc.innerHTML='';
+  MONTHS.forEach((m,mi)=>{
+    const tagHtml=c=>c.tag==='review'?'<span class="ctag tag-review">review</span>':'';
+    const rows=m.classes.map(c=>`<div class="class-row"><span class="class-num">Clase ${c.n}</span><span class="class-topic">${c.t}${tagHtml(c)}</span></div>`).join('');
+    const certBadge=m.cert?'<span style="font-size:11px;background:#FEF3C7;color:#D97706;padding:2px 8px;border-radius:10px;margin-left:8px;font-weight:500">certificado</span>':'';
+    const div=document.createElement('div');
+    div.className='month-block';
+    div.innerHTML=`<div class="month-header" onclick="toggleMonth(this)"><div style="display:flex;align-items:center"><h3 style="margin:0;color:#111827">${m.label}${certBadge}</h3></div><span style="font-size:12px;color:#6B7280">${m.dates} · ${m.focus}</span></div><div class="month-body${mi===0?' open':''}">${rows}</div>`;
+    mc.appendChild(div);
+  });
+
+  const bs=document.getElementById('bonus-section');
+  const showGuia=state.objectives.some(o=>GUIA_OBJS.includes(o));
+  const showViaje=state.objectives.some(o=>VIAJE_OBJS.includes(o));
+  const showEpic=state.objectives.some(o=>EPIC_OBJS.includes(o));
+  let html='';
+  if(showGuia||showViaje||showEpic){
+    html='<h2 style="margin-bottom:10px">Recursos extra para tu objetivo</h2>';
+    if(showGuia){
+      html+=`<div class="bonus-card"><div style="font-size:18px;flex-shrink:0">📋</div><div><div class="bonus-title">Guía: Cómo pasar una entrevista laboral en inglés</div><div class="bonus-desc">Recurso exclusivo de Academia Indiscreta con todo lo que necesitas saber para destacarte en tu próxima entrevista.</div><a href="https://drive.google.com/file/d/1dTzsOn6Cz5drD5xfR6hOkh8emPus3eJz/view?usp=sharing" style="font-size:13px;color:#4F46E5;display:inline-block;margin-top:6px">Descargar guía →</a></div></div>`;
+    }
+    if(showViaje){
+      html+=`<div class="bonus-card"><div style="font-size:18px;flex-shrink:0">✈️</div><div><div class="bonus-title">Guía: Cómo ir a un aeropuerto en inglés</div><div class="bonus-desc">Todo el vocabulario y las frases que necesitas para moverte con confianza en cualquier aeropuerto del mundo.</div><a href="https://drive.google.com/file/d/1dd8Y0CxyzPsKBqYgRH1C1dT8GQcnPrRz/view" style="font-size:13px;color:#4F46E5;display:inline-block;margin-top:6px">Descargar guía →</a></div></div>`;
+    }
+    if(showEpic){
+      html+=`<div class="bonus-card"><div style="font-size:18px;flex-shrink:0">📚</div><div><div class="bonus-title">EPIC! — 100 Everyday Phrases In Context</div><div class="bonus-desc">El ebook con +100 frases del día a día EN CONTEXTO para que vayas practicando vocabulario natural entre clases.</div><a href="https://drive.google.com/file/d/1gDvqRx4HAW90AHIT451SIy2EwOwymRgf/view?usp=sharing" style="font-size:13px;color:#4F46E5;display:inline-block;margin-top:6px">Descargar ebook →</a></div></div>`;
+    }
+    html+='<div style="margin-bottom:1.5rem"></div>';
+  }
+  bs.innerHTML=html;
+
+  const url=window.location.href.split('?')[0]+'?plan='+state.planId;
+  document.getElementById('plan-link').textContent=url;
+}
+
+function copyLink(){
+  const txt=document.getElementById('plan-link').textContent;
+  navigator.clipboard&&navigator.clipboard.writeText(txt);
+  const btn=document.querySelector('.copy-btn');
+  btn.textContent='¡Copiado!';
+  setTimeout(()=>btn.textContent='Copiar',2000);
+}
+
+function checkUrlPlan(){
+  try{
+    const pid=new URLSearchParams(window.location.search).get('plan');
+    if(!pid)return;
+    const data=localStorage.getItem(pid);
+    if(data){state=JSON.parse(data);renderPlan();goTo('screen-plan');}
+  }catch(e){}
+}
+checkUrlPlan();
+</script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;background:#2E4855;-webkit-font-smoothing:antialiased;}
+    * { box-sizing: border-box; }
+    ::placeholder{color:rgba(247,243,231,0.45);}
+    @keyframes glowPulse{0%,100%{opacity:0.9;}50%{opacity:1;}}
+    input:focus{outline:2px solid #75BFBF;}
+    @media (max-width: 640px) {
+      #hero-badge{font-size:11px;text-align:left;}
+      #dos-columnas-grid, #luis-grid, #faq-grid{grid-template-columns:1fr !important;}
+      #luis-grid{gap:32px !important;}
+      #faq-grid img{width:110px !important;margin:0 auto;}
+      #escuchas-grid{grid-template-columns:1fr !important;}
+      section{padding-left:20px !important;padding-right:20px !important;}
+      section > div[style*="grid-template-columns:auto 1fr"]{grid-template-columns:1fr !important;text-align:center;}
+      section > div[style*="grid-template-columns:auto 1fr"] img{margin:0 auto;}
+    }
+  </style>
+</helmet>
+
+<div style="font-family:'DM Sans',sans-serif;color:#F7F3E7;overflow-x:hidden;position:relative;background:
+    radial-gradient(ellipse 900px 600px at 50% 0%, rgba(117,191,191,0.38), transparent 60%),
+    radial-gradient(ellipse 800px 550px at 50% 22%, rgba(117,191,191,0.2), transparent 60%),
+    radial-gradient(ellipse 800px 550px at 50% 45%, rgba(117,191,191,0.16), transparent 60%),
+    radial-gradient(ellipse 800px 550px at 50% 65%, rgba(117,191,191,0.18), transparent 60%),
+    radial-gradient(ellipse 800px 550px at 50% 85%, rgba(117,191,191,0.2), transparent 60%),
+    radial-gradient(ellipse 900px 600px at 50% 100%, rgba(117,191,191,0.3), transparent 60%),
+    #2E4855;">
+
+  <!-- HERO -->
+  <section style="position:relative;background:#2E4855;padding:56px 24px 80px;overflow:hidden;">
+    <div style="position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:1100px;height:750px;background:radial-gradient(ellipse at center, rgba(117,191,191,0.55), rgba(117,191,191,0.18) 40%, rgba(46,72,85,0) 70%);filter:blur(10px);pointer-events:none;animation:glowPulse 6s ease-in-out infinite;"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 900px 500px at 50% 0%, rgba(117,191,191,0.15), transparent 65%);pointer-events:none;"></div>
+
+    <div style="position:relative;max-width:720px;margin:0 auto;text-align:center;">
+      <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(247,243,231,0.06);border:1px solid rgba(247,243,231,0.18);border-radius:999px;padding:10px 20px;margin-bottom:28px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#75BFBF;box-shadow:0 0 8px 2px rgba(117,191,191,0.7);"></span>
+        <span id="hero-badge" style="color:#F7F3E7;font-size:12px;letter-spacing:0.08em;font-weight:700;">DOMINGO 30 DE AGOSTO — 7:00 PM (HORA COLOMBIA)</span>
+      </div>
+
+      <div>
+        <span style="display:inline-block;background:#75BFBF;color:#2E4855;font-weight:700;font-size:13px;letter-spacing:0.06em;padding:8px 20px;border-radius:999px;margin-bottom:24px;">CLASE PRÁCTICA EN VIVO</span>
+      </div>
+
+      <h1 style="font-family:'Anton',sans-serif;color:#F7F3E7;font-size:clamp(2.3rem,6vw,4rem);line-height:1.08;letter-spacing:0.01em;margin:0 0 28px;text-transform:none;">
+        Domina los MODAL VERBS en <span style="text-decoration:underline;text-decoration-color:#EF9D1B;text-decoration-thickness:5px;text-underline-offset:6px;">30 minutos</span> con el método más rápido para aprender inglés
+      </h1>
+
+      <a id="registro" href="#registro" style="display:inline-block;background:#F2BAC3;color:#2E4855;font-weight:700;font-size:15px;letter-spacing:0.04em;padding:16px 36px;border-radius:999px;text-decoration:none;margin-bottom:18px;">ASEGURA TU LUGAR</a>
+
+      <p style="color:rgba(247,243,231,0.75);font-size:16px;margin:0 0 32px;">Una clase de verdad, sin vueltas.</p>
+
+    </div>
+  </section>
+
+  <!-- PROVOCACION -->
+  <section style="padding:64px 24px;border-top:1px solid rgba(247,243,231,0.1);">
+    <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:32px;flex-wrap:wrap;justify-content:center;">
+      <img src="uploads/6a7489022704e5d8dfb17169_academia-indiscreta-00-p-800.webp" alt="Mascota de Academia Indiscreta" style="width:64px;flex-shrink:0;" />
+      <h2 style="font-family:'Anton',sans-serif;color:#F7F3E7;font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.15;margin:0;max-width:560px;text-align:left;">Te están mintiendo sobre la gramática y te lo voy a demostrar en vivo</h2>
+    </div>
+  </section>
+
+  <!-- DOS COLUMNAS -->
+  <section style="padding:80px 24px;">
+    <div id="dos-columnas-grid" style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;">
+      <div style="display:flex;flex-direction:column;justify-content:center;">
+        <p style="font-size:19px;line-height:1.65;color:#F7F3E7;margin:0;">Sí, puedes aprender inglés por exposición, repetición y práctica;</p>
+        <p style="font-size:19px;line-height:1.65;color:#F7F3E7;margin:24px 0 0;">pero cuando estás comenzando, entender la estructura de un nuevo idioma puede hacer que todo cobre sentido mucho más rápido.</p>
+      </div>
+      <div style="background:rgba(247,243,231,0.06);border:1px solid rgba(247,243,231,0.15);border-radius:24px;padding:44px 36px;display:flex;flex-direction:column;gap:20px;">
+        <p style="font-family:'Anton',sans-serif;color:#F7F3E7;font-size:22px;line-height:1.3;margin:0;">Es como aprender a utilizar una máquina.</p>
+        <p style="color:rgba(247,243,231,0.85);font-size:16px;line-height:1.6;margin:0;">Podés apretar todos los botones a ver qué pasa y aprender de eso… o podés entender desde el principio <span style="color:#EF9D1B;font-weight:700;">para qué sirve cada botón.</span></p>
+        <p style="color:rgba(247,243,231,0.85);font-size:16px;line-height:1.6;margin:0;">En este workshop haremos exactamente eso, pero con <span style="color:#75BFBF;font-weight:700;">Los Modal Verbs.</span></p>
+        <a href="#registro" style="align-self:flex-start;background:#F2BAC3;color:#2E4855;font-weight:700;font-size:14px;letter-spacing:0.03em;padding:14px 28px;border-radius:999px;text-decoration:none;margin-top:8px;">QUIERO MI CUPO</a>
+        <img src="uploads/6a80aaa1d2bce427c147051b_modal-verbs-support-characters.avif" alt="Mascotas de Academia Indiscreta ayudándose" style="width:150px;align-self:flex-end;margin-top:8px;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- MECANISMO -->
+  <section style="padding:80px 24px;text-align:center;">
+    <div style="max-width:680px;margin:0 auto;">
+      <span style="display:inline-block;background:#75BFBF;color:#2E4855;font-weight:700;font-size:13px;letter-spacing:0.06em;padding:8px 22px;border-radius:999px;margin-bottom:28px;">30% TEORÍA — 70% PRÁCTICA</span>
+      <p style="font-family:'Anton',sans-serif;color:#F7F3E7;font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.4;margin:0;">Mi método es simple: te enseño la regla y cómo <span style="color:#F2BAC3;">USARLA</span> en conversaciones, que es lo importante.</p>
+    </div>
+  </section>
+
+  <!-- TE HA PASADO -->
+  <section style="padding:64px 24px;">
+    <div style="max-width:1000px;margin:0 auto;background:#F2BAC3;border-radius:24px;padding:44px 40px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;">
+      <img src="uploads/pasted-1786904669048-0.png" alt="¿Te ha pasado algo así?" style="width:220px;flex-shrink:0;border-radius:16px;" />
+      <div>
+        <p style="font-size:18px;line-height:1.6;color:#2E4855;margin:0 0 24px;"><b>Los Modal Verbs</b> tienen peor fama que el hijo de la vecina, diría mi mamá. Por eso mucha gente cree que el problema es estudiar gramática, <b>pero realmente es la forma en la que la has estado estudiando.</b></p>
+        <a href="#registro" style="display:inline-block;background:#EF9D1B;color:#2E4855;font-weight:700;font-size:14px;letter-spacing:0.03em;padding:14px 28px;border-radius:999px;text-decoration:none;">Quiero mi Cupo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESCUCHAS QUE DICEN -->
+  <section style="padding:0 24px 64px;">
+    <div id="escuchas-grid" style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+      <div style="background:rgba(247,243,231,0.06);border:1px solid rgba(247,243,231,0.15);border-radius:24px;padding:36px 32px;">
+        <p style="font-weight:700;font-size:17px;color:#F7F3E7;margin:0 0 20px;">Escuchas que dicen:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <span style="background:#F2BAC3;color:#2E4855;font-weight:700;text-align:center;padding:24px 12px;border-radius:16px;box-shadow:0 0 24px 4px rgba(242,186,195,0.65);">You should…</span>
+          <span style="background:#75BFBF;color:#2E4855;font-weight:700;text-align:center;padding:24px 12px;border-radius:16px;box-shadow:0 0 24px 4px rgba(117,191,191,0.65);">May I?</span>
+          <span style="background:#F7F3E7;color:#2E4855;font-weight:700;text-align:center;padding:24px 12px;border-radius:16px;box-shadow:0 0 24px 4px rgba(247,243,231,0.45);">I couldn't.</span>
+          <span style="background:#EF9D1B;color:#2E4855;font-weight:700;text-align:center;padding:24px 12px;border-radius:16px;box-shadow:0 0 24px 4px rgba(239,157,27,0.65);">They might…</span>
+        </div>
+      </div>
+      <div style="background:rgba(247,243,231,0.06);border:1px solid rgba(247,243,231,0.15);border-radius:24px;padding:36px 32px;">
+        <p style="font-weight:700;font-size:17px;color:#F7F3E7;margin:0 0 20px;">Y ahí comienzas:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <span style="background:#2E4855;border:1px solid rgba(117,191,191,0.4);color:#F7F3E7;font-weight:700;text-align:center;padding:24px 12px;border-radius:16px;">"¿Pa qué era ese?"</span>
+          <span style="background:#2E4855;border:1px solid rgba(117,191,191,0.4);color:#F7F3E7;font-weight:700;text-align:center;padding:24px 12px;border-radius:16px;">"¿Qué dijo?"</span>
+          <span style="background:#2E4855;border:1px solid rgba(117,191,191,0.4);color:#F7F3E7;font-weight:700;text-align:center;padding:24px 12px;border-radius:16px;">"¿Por qué couldn't?"</span>
+          <span style="background:#2E4855;border:1px solid rgba(117,191,191,0.4);color:#F7F3E7;font-weight:700;text-align:center;padding:24px 12px;border-radius:16px;">"¿Quién es might?"</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIEN ES LUIS -->
+  <section style="padding:80px 24px;position:relative;overflow:hidden;">
+    <div id="luis-grid" style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:0.8fr 1.2fr;gap:48px;align-items:center;position:relative;">
+      <div style="position:relative;">
+        <div style="position:absolute;top:-24px;left:-24px;width:150px;height:150px;background:#F2BAC3;border-radius:50%;filter:blur(6px);opacity:0.7;z-index:0;"></div>
+        <div style="position:absolute;bottom:-20px;right:-20px;width:110px;height:110px;background:#75BFBF;border-radius:50%;filter:blur(4px);opacity:0.6;z-index:0;"></div>
+        <img src="uploads/6a747ee5687ad4e57edae64c_academia-indiscreta-7.webp" alt="Luis David, creador de Academia Indiscreta" style="position:relative;z-index:1;width:100%;border-radius:20px;display:block;object-fit:cover;" />
+      </div>
+      <div>
+        <h2 style="font-family:'Anton',sans-serif;color:#F7F3E7;font-size:clamp(1.4rem,2.8vw,1.9rem);line-height:1.25;margin:0 0 20px;">¡ÉPALE, ¿QUÉ MÁS? POR AQUÍ LUIS DAVID</h2>
+        <p style="font-size:16px;line-height:1.7;color:rgba(247,243,231,0.85);margin:0 0 16px;">Soy el creador de <b style="color:#F7F3E7;">Academia Indiscreta</b>, un espacio diseñado para demostrarte que aprender inglés no tiene que ser un sacrificio. Al contrario, es un proceso que puede ser bastante entretenido y cero frustrante.</p>
+        <p style="font-size:16px;line-height:1.7;color:rgba(247,243,231,0.85);margin:0 0 16px;">Creemos que para lograr cualquier objetivo con el idioma, primero se debe entender cómo funciona desde el día 1. Por eso creamos este workshop.</p>
+        <p style="font-size:16px;line-height:1.7;color:rgba(247,243,231,0.85);margin:0;">Quiero que tengas una cucharadita de cómo aprendemos aquí, con todas las de la ley.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding:80px 24px;">
+    <div style="max-width:1000px;margin:0 auto;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:40px;">
+        <h2 style="font-family:'Anton',sans-serif;color:#F7F3E7;font-size:clamp(1.6rem,3.4vw,2.3rem);margin:0;">Preguntas Frecuentes</h2>
+        <a href="#registro" style="background:#EF9D1B;color:#2E4855;font-weight:700;font-size:14px;letter-spacing:0.03em;padding:14px 28px;border-radius:999px;text-decoration:none;">Quiero mi Cupo</a>
+      </div>
+      <div id="faq-grid" style="display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start;">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="5">
+            <div style="background:rgba(247,243,231,0.06);border:1px solid rgba(247,243,231,0.15);border-radius:16px;overflow:hidden;">
+              <button onclick="{{ faq.toggle }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:none;border:none;padding:20px 24px;text-align:left;cursor:pointer;font-family:'DM Sans',sans-serif;">
+                <span style="color:#F7F3E7;font-size:16px;font-weight:700;">{{ faq.q }}</span>
+                <span style="color:#75BFBF;font-size:22px;font-weight:700;flex-shrink:0;">{{ faq.symbol }}</span>
+              </button>
+              <sc-if value="{{ faq.open }}" hint-placeholder-val="{{ false }}">
+                <p style="color:rgba(247,243,231,0.8);font-size:15px;line-height:1.6;margin:0;padding:0 24px 20px;">{{ faq.a }}</p>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <img src="uploads/6a81d2c388fa937978ccbfd4_academia-skeptical-character.webp" alt="Mascota de Academia Indiscreta" style="width:170px;justify-self:center;align-self:center;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section style="position:relative;background:#2E4855;padding:80px 24px;overflow:hidden;text-align:center;">
+    <div style="position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse at center, rgba(117,191,191,0.5), rgba(117,191,191,0.15) 40%, rgba(46,72,85,0) 70%);filter:blur(10px);pointer-events:none;"></div>
+    <div style="position:relative;max-width:560px;margin:0 auto;">
+      <h2 style="font-family:'Anton',sans-serif;color:#F7F3E7;font-size:clamp(1.6rem,3.6vw,2.3rem);margin:0 0 28px;">No dejes pasar esta clase</h2>
+      <a href="#registro" style="display:inline-block;background:#F2BAC3;color:#2E4855;font-weight:700;font-size:15px;letter-spacing:0.04em;padding:18px 40px;border-radius:999px;text-decoration:none;">RESERVAR MI LUGAR</a>
+      <p style="color:rgba(247,243,231,0.6);font-size:13px;margin-top:20px;">Cupos limitados. 30 de agosto, 7:00 PM.</p>
+    </div>
+  </section>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    openFaq: null,
+    faqData: [
+      { q: "¿Necesito tener mucho nivel?", a: "Para nada. El workshop está diseñado para quien sea." },
+      { q: "¿De verdad es gratis?", a: "Obvio, microbio. No necesitas comprar nada." },
+      { q: "¿Tengo que hablar durante la clase?", a: "No. La participación será voluntaria y a tu ritmo." },
+      { q: "¿Y si no sé nadita de Modal Verbs?", a: "Mejor todavía. Comenzamos con conceptos básicos." },
+      { q: "¿La clase será grabada?", a: "No. Es una experiencia completamente en vivo." },
+    ],
+  };
+  toggleFaq(i) {
+    this.setState((s) => ({ openFaq: s.openFaq === i ? null : i }));
+  }
+  renderVals() {
+    const faqs = this.state.faqData.map((f, i) => ({
+      q: f.q,
+      a: f.a,
+      open: this.state.openFaq === i,
+      symbol: this.state.openFaq === i ? "–" : "+",
+      toggle: () => this.toggleFaq(i),
+    }));
+    return { faqs };
+  }
+}
+</script>
+</body>
+</html>
